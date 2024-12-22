@@ -1,0 +1,389 @@
+/* 
+*Let's start with building the UI 
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #444;
+  background-color: #f3f3f3;
+  height: 100vh;
+  padding: 2rem;
+}
+
+/*  NAVIGATION */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.welcome {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+.logo {
+  height: 5.25rem;
+  /* width: 3.2rem; */
+}
+
+.login {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.login__input {
+  border: none;
+  padding: 0.5rem 2rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  text-align: center;
+  width: 12rem;
+  border-radius: 10rem;
+  margin-right: 1rem;
+  color: inherit;
+  border: 1px solid #fff;
+  transition: all 0.3s;
+}
+
+.login__input:focus {
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.login__input::-webkit-input-placeholder {
+  color: #bbb;
+}
+
+.login__input::-moz-placeholder {
+  color: #bbb;
+}
+
+.login__input:-ms-input-placeholder {
+  color: #bbb;
+}
+
+.login__input::-ms-input-placeholder {
+  color: #bbb;
+}
+
+.login__input::placeholder {
+  color: #bbb;
+}
+
+.login__btn {
+  border: none;
+  background: none;
+
+  font-size: 2.2rem;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login__btn:hover,
+.login__btn:focus,
+.btn--sort:hover,
+.btn--sort:focus {
+  outline: none;
+  color: #777;
+}
+
+/* MAIN */
+.app {
+  position: relative;
+
+  max-width: 84rem;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: auto repeat(3, 10fr) auto;
+  gap: 2rem;
+
+  /* NOTE This creates the fade in/out animation */
+  opacity: 0;
+  transition: all 1s;
+}
+
+.balance {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+
+  /*align-items: flex-end;
+  margin-bottom: 2rem; */
+}
+
+.balance__label {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: -0.2rem;
+}
+
+.balance__date {
+  font-size: 1.4rem;
+  color: #888;
+}
+
+.balance__value {
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+/* MOVEMENTS */
+.movements {
+  grid-row: 2 / span 3;
+  background-color: #fff;
+  border-radius: 1rem;
+  overflow: scroll;
+}
+
+.movements__row {
+  padding: 2.25rem 4rem;
+  /* display: grid;
+  grid-template-columns: 1fr 0.5fr 0.5fr; */
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.movements__type {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+
+  padding: 0.1rem 1rem;
+  border-radius: 10rem;
+  margin-right: 2rem;
+}
+
+.movements__date {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #666;
+}
+
+.movements__type--deposit {
+  background-image: linear-gradient(to bottom right, #9be15d, #39b385);
+}
+
+.movements__type--withdrawal {
+  background-image: linear-gradient(to bottom right, #ff585f, #e52a5a);
+}
+
+.movements__value {
+  font-size: 1.7rem;
+  color: #333;
+  margin-left: auto;
+}
+
+/* SUMMARY */
+
+.summary {
+  grid-row: 5 / -1;
+  /* grid-column: 1 / 2; */
+  display: flex;
+  align-items: baseline;
+  padding: 0 0.3rem;
+  margin-top: 1rem;
+}
+
+.summary__label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-right: 0.8rem;
+}
+
+.summary__value {
+  font-size: 1.8rem;
+  margin-right: 2.2rem;
+}
+
+.summary__value--in,
+.summary__value--interest {
+  color: #66c873;
+}
+
+.summary__value--out {
+  color: #f5465d;
+}
+
+.btn--sort {
+  margin-left: auto;
+  border: none;
+  background-color: inherit;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* OPERATIONS */
+.operation {
+  border-radius: 1rem;
+  padding: 3rem 4rem;
+  color: #333;
+  grid-column: 2 / 3;
+}
+
+.operation--transfer {
+  grid-row: 2;
+  background-image: linear-gradient(to bottom right, #ffcb03, #ffb003);
+}
+
+.operation--loan {
+  background-image: linear-gradient(to bottom right, #9be15d, #39b385);
+}
+
+.operation--close {
+  background-image: linear-gradient(to bottom right, #ff585f, #e52a5a);
+  margin-bottom: 0;
+}
+
+h2 {
+  text-align: left;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: auto auto;
+  margin-top: 1.7rem;
+  gap: 0.4rem 1rem;
+}
+
+/* Exceptions for loan */
+.form.form--loan {
+  grid-template-columns: 2.5fr 1fr 2.5fr;
+}
+.form__label--loan {
+  grid-row: 2;
+}
+
+/* End exceptions */
+.form__input {
+  width: 13rem;
+  border: none;
+  background-color: #ffffff66;
+  font-family: inherit;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #333;
+  padding: 0.4rem 1rem;
+  border-radius: 0.7rem;
+  transition: all 0.3s;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.form__label {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.form__btn {
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.8rem;
+  padding: 0 1.2rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.form__btn:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.logout-timer {
+  padding: 0 0.3rem;
+  margin-top: 1rem;
+  /* grid-column: 2 / 3; */
+  text-align: right;
+  justify-self: end;
+  /* font-size: 1.25rem;
+  color: #555; */
+}
+
+.timer {
+  font-weight: 600;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ?___________________________________________________________________________________ */
+/* NOTIFICATION */
+.notification {
+  color: #fff;
+  width: 50rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  border-radius: 1rem;
+  padding: 2rem 4rem;
+  background-image: linear-gradient(to bottom right, #414242, #232929);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 100;
+  opacity: 0;
+}
+
+.notification h2 {
+  color: #28ddee;
+}
+
+.notification--text {
+  font-size: 1.8rem;
+}
+
+.notify__btn--close {
+  margin-top: 2rem;
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.6rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
